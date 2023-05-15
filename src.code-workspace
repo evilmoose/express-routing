@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "src",
+			"path": "../express-routing-solution/src"
+		},
+		{
+			"name": "express-routing",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

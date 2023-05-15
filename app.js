@@ -1,10 +1,18 @@
 // app.js
 import express from 'express';
 import ErrorHandler from './Utilities/util.js';
+import {convertToNumbers} from './Functions/functions.js';
 
 const app = express();
 
+app.use(express.json());
+
+// res.json(product)
+
 app.get('/', (req, res, next) => {
+    if (!req.query.nums) {
+        throw new ErrorHandler('Invalid data', 400)
+    }
     res.send('');
 })
 
