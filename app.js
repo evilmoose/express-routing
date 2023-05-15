@@ -1,7 +1,7 @@
 // app.js
 import express from 'express';
 import ErrorHandler from './Utilities/util.js';
-import {convertToNumbers} from './Functions/functions.js';
+import func from './Functions/functions.js';
 
 const app = express();
 
@@ -10,14 +10,27 @@ app.use(express.json());
 // res.json(product)
 
 app.get('/', (req, res, next) => {
-    if (!req.query.nums) {
-        throw new ErrorHandler('Invalid data', 400)
-    }
     res.send('');
 })
 
 app.get('/mean', (req, res, next) => {
-    res.send('mean');
+    if (!req.query.nums) {
+        throw new ErrorHandler('Invalid data', 400)
+    }
+
+    let numToString = req.query.nums.split('.');
+    let numbers = func.cconvertToNumbers(numToString);
+
+    if (numbers instanceof Error) {
+        throw new ErrorHandler( numbers.message);
+    }
+
+    let result = {
+        operation: "mean",
+        result: findMean(numbers)
+    }
+
+    return res.send(result);
 })
 
 app.get('/median', (req, res) => {

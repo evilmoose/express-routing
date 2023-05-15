@@ -14,3 +14,5 @@ function converToNumbers(strings) {
     }
     return result;
   }
+
+  export default converToNumbers;
